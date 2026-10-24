@@ -1,6 +1,20 @@
-print('hello world')
+"""Small examples of intentional logic bugs for debugging practice."""
 
-print('lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
 
-print(How are u )
-print('I am fine, thank you! How about you?')
+def largest_number(numbers):
+    # Bug: this returns 0 when every number in the list is negative.
+    largest = 0
+    for number in numbers:
+        if number > largest:
+            largest = number
+    return largest
+
+
+def apply_discount(price, discount_percent):
+    # Bug: percent should be divided by 100 before calculating the discount.
+    return price - (price * discount_percent)
+
+
+if __name__ == "__main__":
+    print("Largest:", largest_number([-8, -3, -12]))  # Incorrectly prints 0
+    print("Discounted price:", apply_discount(100, 20))  # Incorrectly prints -1900
